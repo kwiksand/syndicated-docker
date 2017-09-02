@@ -1,0 +1,13 @@
+
+#daemon=1
+rpcuser=arcticcoinrpc
+rpcpassword=3rgytpvWjem7PzDAxJMRXjYEIUUF6LHzzIDUAMchGVAXEtmXW6g3FrPs1wVXCJo
+server=1
+listen=1
+txindex=1
+#txindex will record every transaction from the blockchain to your offline db
+#it's an optional thing. It takes a lot longerr to sync that way 0 if you don't care
+rpcport=7208
+port=7209
+rpcallowip=127.0.0.1
+
