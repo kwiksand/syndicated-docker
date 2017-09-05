@@ -1,7 +1,7 @@
 #!/bin/sh
-set -e
-SYNDICATE_DATA=/home/syndicate/.syndicate
-cd /home/syndicate/syndicated
+set -ex
+SYNDICATE_DATA=/home/syndicate/.Syndicate
+#cd /home/syndicate/syndicated
 
 if [ $(echo "$1" | cut -c1) = "-" ]; then
   echo "$0: assuming arguments for Syndicated"

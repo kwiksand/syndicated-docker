@@ -6,4 +6,4 @@ daemon:
    - "9999:9999"
    - "22438:22438"
   volumes:
-   - /media/crypto/syndicate:/home/syndicate/.syndicate
+   - /media/crypto/syndicate:/home/syndicate/.Syndicate

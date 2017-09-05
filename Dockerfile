@@ -5,7 +5,6 @@ RUN useradd -m syndicate
 ENV SYNDICATE_DATA=/home/syndicate/.syndicate
 
 RUN apt-get install -y libgmp-dev 
- #libsecp256k1-devel
 
 USER syndicate
 
