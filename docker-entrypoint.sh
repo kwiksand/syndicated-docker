@@ -23,7 +23,8 @@ if [ "$1" = "Syndicated" ] || [ "$1" = "Syndicate-cli" ] || [ "$1" = "Syndicate-
   echo
   #exec gosu syndicate "$@"
   gosu syndicate "$@"
+else
+  echo
+  exec "$@"
 fi
 
-echo
-exec "$@"
