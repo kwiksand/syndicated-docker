@@ -18,7 +18,7 @@ RUN cd /home/syndicate && \
     make -f makefile.unix && \
     strip Syndicated
     
-EXPOSE 9999 22348
+EXPOSE 22348 22439
 
 #VOLUME ["/home/syndicate/.syndicate"]
 
