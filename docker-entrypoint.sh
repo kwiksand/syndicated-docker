@@ -21,8 +21,8 @@ fi
 
 if [ "$1" = "Syndicated" ] || [ "$1" = "Syndicate-cli" ] || [ "$1" = "Syndicate-tx" ]; then
   echo
-  #exec gosu syndicate "$@"
-  gosu syndicate "$@"
+  exec gosu syndicate "$@"
+  #gosu syndicate "$@"
 else
   echo
   exec "$@"
