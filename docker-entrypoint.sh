@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-SYNDICATE_DATA=/home/syndicate/.syndicate
+SYNDICATE_DATA=/home/syndicate/.Syndicate
 CONFIG_FILE=Syndicate.conf
 
 if [ -z "$1" ] || [ "$1" == "Syndicated" ] || [ "$(echo "$1" | cut -c1)" == "-" ]; then
