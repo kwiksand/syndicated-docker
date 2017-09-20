@@ -29,7 +29,7 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
-    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias Syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z $TERM -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
+    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias Syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
     echo "Syndicate (SYNX) Cryptocoin Daemon\n\nUsage:\n Syndicated help - List help options\n Syndicated listtransactions - List Transactions\n\n" > /etc/motd && \
     chmod 755 /home/syndicate/bin/Syndicated && \
     mv /home/syndicate/bin/Syndicated /usr/bin/Syndicated && \
