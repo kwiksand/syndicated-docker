@@ -5,8 +5,6 @@ RUN useradd -m syndicate
 ENV DAEMON_RELEASE="v1.0.1.8"
 ENV SYNDICATE_DATA=/home/syndicate/.syndicate
 
-RUN apt-get install -y libgmp-dev 
-
 USER syndicate
 
 RUN cd /home/syndicate && \
@@ -18,8 +16,8 @@ RUN cd /home/syndicate && \
     git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLabs/SyndicateQT.git syndicated && \
     cd /home/syndicate/syndicated/src && \
     make -f makefile.unix && \
-    strip Syndicated
-    Smv yndicated /home/syndicate/bin && \
+    strip Syndicated && \
+    mv Syndicated /home/syndicate/bin && \
     rm -rf /home/syndicate/syndicated
     
 EXPOSE 22348 9999
