@@ -2,7 +2,8 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-ENV DAEMON_RELEASE="v1.0.1.8"
+#ENV DAEMON_RELEASE="v1.9.1"
+ENV DAEMON_RELEASE="master"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
@@ -13,7 +14,7 @@ RUN cd /home/syndicate && \
     chmod 700 .ssh && \
     ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
-    git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLabs/SyndicateQT.git syndicated && \
+    git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
     cd /home/syndicate/syndicated/src && \
     make -f makefile.unix && \
     strip Syndicated && \
