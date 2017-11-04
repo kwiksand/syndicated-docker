@@ -16,6 +16,7 @@ RUN cd /home/syndicate && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
     git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
     cd /home/syndicate/syndicated/src && \
+    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
     make -f makefile.unix && \
     strip Syndicated && \
     mv Syndicated /home/syndicate/bin && \
