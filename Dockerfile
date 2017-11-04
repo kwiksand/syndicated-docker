@@ -2,8 +2,8 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-#ENV DAEMON_RELEASE="v1.9.1"
-ENV DAEMON_RELEASE="master"
+ENV DAEMON_RELEASE="v1.9.2"
+#ENV DAEMON_RELEASE="master"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
