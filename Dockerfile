@@ -2,8 +2,8 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-#ENV DAEMON_RELEASE="v1.9.2"
-ENV DAEMON_RELEASE="master"
+ENV DAEMON_RELEASE="v1.9.9"
+#ENV DAEMON_RELEASE="master"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
@@ -19,7 +19,9 @@ RUN cd /home/syndicate && \
 #    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
     make -f makefile.unix && \
     strip Syndicated && \
-    mv Syndicated /home/syndicate/bin && \
+    strip Syndicate-tx && \
+    strip Syndicate-cli && \
+    mv Syndicated Syndicate-cli Syndicate-tx /home/syndicate/bin && \
     rm -rf /home/syndicate/syndicated
     
 EXPOSE 22348 9999
@@ -31,11 +33,17 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
-    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias Syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
-    echo "Syndicate (SYNX) Cryptocoin Daemon\n\nUsage:\n Syndicated help - List help options\n Syndicated listtransactions - List Transactions\n\n" > /etc/motd && \
+    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias Syndicated='/usr/bin/Syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias Syndicatecli='/usr/bin/Syndicate-cli -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
+    echo "Syndicate (SYNX) Cryptocoin Daemon\n\nUsage:\n Syndicate-cli help - List help options\n Syndicate-cli listtransactions - List Transactions\n\n" > /etc/motd && \
     chmod 755 /home/syndicate/bin/Syndicated && \
+    chmod 755 /home/syndicate/bin/Syndicate-cli && \
+    chmod 755 /home/syndicate/bin/Syndicate-tx && \
     mv /home/syndicate/bin/Syndicated /usr/bin/Syndicated && \
-    ln -s /usr/bin/Syndicated /usr/bin/syndicated
+    mv /home/syndicate/bin/Syndicate-cli /usr/bin/Syndicate-cli && \
+    mv /home/syndicate/bin/Syndicate-tx /usr/bin/Syndicate-tx && \
+    ln -s /usr/bin/Syndicated /usr/bin/syndicated && \
+    ln -s /usr/bin/Syndicate-cli /usr/bin/syndicate-cli && \
+    ln -s /usr/bin/Syndicate-tx /usr/bin/syndicate-tx
 
 ENTRYPOINT ["/entrypoint.sh"]
 
