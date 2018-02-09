@@ -27,3 +27,4 @@ To setup in the simplest way:
 
 By this stage you have a working syndicate wallet/blockchain setup, now we need to set up the masternode itself:
 
+test
