@@ -1,6 +1,5 @@
 ---
 daemon:
-#  build: .
   image: quay.io/kwiksand/syndicated:latest
   ports:
   - "22348:22348"

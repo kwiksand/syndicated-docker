@@ -4,7 +4,7 @@ set -e
 SYNDICATE_DATA=/home/syndicate/.Syndicate
 CONFIG_FILE=Syndicate.conf
 
-if [ -z "$1" ] || [ "$1" == "Syndicated" ] || [ "$(echo "$1" | cut -c1)" == "-" ]; then
+if [ -z "$1" ] || [ "$1" == "syndicated" ] || [ "$(echo "$0" | cut -c1)" == "-" ]; then
   cmd=Syndicated
   shift
 
