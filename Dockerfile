@@ -4,7 +4,7 @@ RUN useradd -m syndicate
 
 #ENV DAEMON_RELEASE="v1.9.9"
 ENV DAEMON_RELEASE="master"
-ENV GIT_COMMIT="078d534e0dee26cd923b69656200e63a0c8d05f6"
+ENV GIT_COMMIT="4eff3c2cea3cd9b69618c1ebd426056a84c6c1c8"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
