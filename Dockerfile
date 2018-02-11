@@ -2,11 +2,13 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-ENV DAEMON_RELEASE="v1.9.9"
-#ENV DAEMON_RELEASE="master"
+#ENV DAEMON_RELEASE="v1.9.9"
+ENV DAEMON_RELEASE="master"
+ENV GIT_COMMIT="078d534e0dee26cd923b69656200e63a0c8d05f6"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
+RUN cd /home/syndicate
 
 RUN cd /home/syndicate && \
     mkdir /home/syndicate/bin && \
@@ -16,11 +18,13 @@ RUN cd /home/syndicate && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
     git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
     cd /home/syndicate/syndicated && \
+    git checkout $GIT_COMMIT && \
     chmod 777 autogen.sh src/leveldb/build_detect_platform && \
 #    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
 #    make -f makefile.unix && \a
     ./autogen.sh && \
     ./configure LDFLAGS="-L/home/syndicate/db4/lib/" CPPFLAGS="-I/home/syndicate/db4/include/" && \
+  #  ./configure LDFLAGS="-L/home/syndicate/db4/lib/" CPPFLAGS="-I/home/syndicate/db4/include/" && \
     make && \
     cd src/ && \
     strip syndicated && \
@@ -30,8 +34,6 @@ RUN cd /home/syndicate && \
     rm -rf /home/syndicate/syndicated
     
 EXPOSE 22348 9999
-
-#VOLUME ["/home/syndicate/.Syndicate"]
 
 USER root
 
