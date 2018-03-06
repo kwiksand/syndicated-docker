@@ -4,7 +4,7 @@ RUN useradd -m syndicate
 
 #ENV DAEMON_RELEASE="v1.9.9"
 ENV DAEMON_RELEASE="master"
-ENV GIT_COMMIT="4eff3c2cea3cd9b69618c1ebd426056a84c6c1c8"
+ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
@@ -29,7 +29,7 @@ RUN cd /home/syndicate && \
     strip syndicated && \
     strip syndicate-tx && \
     strip syndicate-cli && \
-    mv syndicated syndicate-cli syndicate-tx /usr/bin && \
+    mv syndicated syndicate-cli syndicate-tx /home/syndicate/bin && \
     chmod 755 /home/syndicate/bin/syndicated && \
     chmod 755 /home/syndicate/bin/syndicate-cli && \
     chmod 755 /home/syndicate/bin/syndicate-tx && \
@@ -42,6 +42,7 @@ USER root
 COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
+    mv /home/syndicate/bin/* /usr/bin && \
     echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias syndicate-cli='/usr/bin/syndicate-cli -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
     echo "Syndicate (SYNX) Cryptocoin Daemon\n\nUsage:\n syndicate-cli help - List help options\n syndicate-cli listtransactions - List Transactions\n\n" > /etc/motd
 
