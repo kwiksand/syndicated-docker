@@ -4,7 +4,7 @@ RUN useradd -m syndicate
 
 ENV DAEMON_RELEASE="v2.0.0"
 #ENV DAEMON_RELEASE="master"
-ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
+#ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
@@ -18,7 +18,6 @@ RUN cd /home/syndicate && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
     git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
     cd /home/syndicate/syndicated && \
-    git checkout $GIT_COMMIT && \
     chmod 777 autogen.sh src/leveldb/build_detect_platform && \
 #    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
 #    make -f makefile.unix && \a
