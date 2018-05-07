@@ -10,5 +10,5 @@ rpcuser=SyndicateRPC
 rpcpassword=THIS_SHOULD_BE_A_REALLY_LONG_RANDOM_PASSWORD
 rpcallowip=127.0.0.1
 rpcport=22348
-port=9999
+port=25992
 
