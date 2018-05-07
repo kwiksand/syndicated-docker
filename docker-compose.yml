@@ -3,6 +3,6 @@ daemon:
   image: quay.io/kwiksand/syndicated:latest
   ports:
   - "22348:22348"
-  - "9999:9999"
+  - "25992:25992"
   volumes:
   - /media/crypto/syndicate:/home/syndicate/.Syndicate
