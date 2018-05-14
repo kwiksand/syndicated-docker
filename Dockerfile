@@ -18,8 +18,8 @@ RUN cd /home/syndicate && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
     #git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
     git clone https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
-    git checkout $GIT_COMMIT && \
     cd /home/syndicate/syndicated && \
+    git checkout $GIT_COMMIT && \
     chmod 777 autogen.sh src/leveldb/build_detect_platform share/genbuild.sh && \
 #    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
 #    make -f makefile.unix && \a
