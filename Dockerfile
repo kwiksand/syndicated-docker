@@ -2,7 +2,7 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-ENV DAEMON_RELEASE="v2.0.0"
+ENV DAEMON_RELEASE="v2.0.1"
 #ENV DAEMON_RELEASE="master"
 #ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
@@ -34,7 +34,7 @@ RUN cd /home/syndicate && \
     chmod 755 /home/syndicate/bin/syndicate-tx && \
     rm -rf /home/syndicate/syndicated
     
-EXPOSE 22348 25992
+EXPOSE 25992 25993
 
 USER root
 
@@ -42,7 +42,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN chmod 777 /entrypoint.sh && \
     mv /home/syndicate/bin/* /usr/bin && \
-    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/syndicated -conf=/home/syndicate/.Syndicate/Syndicate.conf'\nalias syndicate-cli='/usr/bin/syndicate-cli -conf=/home/syndicate/.Syndicate/Syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
+    echo "\n# Some aliases to make the syndicate clients/tools easier to access\nalias syndicated='/usr/bin/syndicated -conf=/home/syndicate/.Syndicate/syndicate.conf'\nalias syndicate-cli='/usr/bin/syndicate-cli -conf=/home/syndicate/.Syndicate/syndicate.conf'\n\n[ ! -z \"\$TERM\" -a -r /etc/motd ] && cat /etc/motd" >> /etc/bash.bashrc && \
     echo "Syndicate (SYNX) Cryptocoin Daemon\n\nUsage:\n syndicate-cli help - List help options\n syndicate-cli listtransactions - List Transactions\n\n" > /etc/motd
 
 ENTRYPOINT ["/entrypoint.sh"]

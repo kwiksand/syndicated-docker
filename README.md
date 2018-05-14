@@ -18,7 +18,7 @@ To setup in the simplest way:
 ```
 * Copy the example config, moving it to the directory chosen above:
 ```bash
-  cp Syndicate.conf.example /media/crypto/syndicate/Syndicate.conf
+  cp syndicate.conf.example /media/crypto/syndicate/syndicate.conf
 ```
 * Edit the new config, changing the username and password (something long/random)
 * Start via docker-compose - `docker-compose up -d`
