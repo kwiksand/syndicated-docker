@@ -2,9 +2,9 @@ FROM quay.io/kwiksand/cryptocoin-base:latest
 
 RUN useradd -m syndicate
 
-ENV DAEMON_RELEASE="v2.0.1"
+#ENV DAEMON_RELEASE="v2.0.1"
 #ENV DAEMON_RELEASE="master"
-#ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
+ENV GIT_COMMIT="710bdf3d4f44a654798f23ff39c78e8b2d9fca09"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER syndicate
@@ -16,7 +16,9 @@ RUN cd /home/syndicate && \
     chmod 700 .ssh && \
     ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && \
     ssh-keyscan -t rsa bitbucket.org >> ~/.ssh/known_hosts && \
-    git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
+    #git clone --branch $DAEMON_RELEASE https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
+    git clone https://github.com/SyndicateLtd/SyndicateQT.git syndicated && \
+    git checkout $GIT_COMMIT
     cd /home/syndicate/syndicated && \
     chmod 777 autogen.sh src/leveldb/build_detect_platform share/genbuild.sh && \
 #    sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp && \
