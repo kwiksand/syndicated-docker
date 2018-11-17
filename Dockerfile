@@ -34,7 +34,7 @@ RUN cd /home/syndicate && \
     chmod 755 /home/syndicate/bin/syndicate-tx && \
     rm -rf /home/syndicate/syndicated
     
-EXPOSE 22348 9999
+EXPOSE 51472 51473
 
 USER root
 
