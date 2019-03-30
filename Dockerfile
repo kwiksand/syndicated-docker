@@ -10,6 +10,7 @@ ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 USER syndicate
 
 RUN cd /home/syndicate && \
+    apt-get install -y libcurl3 && \
     mkdir /home/syndicate/bin && \
     mkdir .ssh && \
     chmod 700 .ssh && \
