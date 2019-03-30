@@ -9,7 +9,7 @@ ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
 USER root
 
-RUN apt-get install -y libcurl3
+RUN apt-get install -y libcurl3 libcurl
 
 USER syndicate
 
