@@ -7,10 +7,13 @@ ENV DAEMON_RELEASE="v2.2.0"
 #ENV GIT_COMMIT="cabbdc220a6d35fb4b00d9c4655b217b2a4d62b3"
 ENV SYNDICATE_DATA=/home/syndicate/.Syndicate
 
+USER root
+
+RUN apt-get install -y libcurl3
+
 USER syndicate
 
 RUN cd /home/syndicate && \
-    apt-get install -y libcurl3 && \
     mkdir /home/syndicate/bin && \
     mkdir .ssh && \
     chmod 700 .ssh && \
